@@ -41,7 +41,7 @@
    LSB comes first, all bytes except final (MSB) have high bit set indicating more to follow."
   [n]
   (loop [vi []  r n]
-    (if (= (bit-and (bit-not 0x7F) r) 0)
+    (if (zero? (bit-and (bit-not 0x7F) r))
       (conj vi r)
       (recur (conj vi (bit-or 0x80 (bit-and 0x7F r)))
              (unsigned-bit-shift-right r 7)))))
