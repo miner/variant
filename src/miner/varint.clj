@@ -49,10 +49,10 @@
 ;; bit-or is slightly faster than bit-set
 ;; better to use bit-and+bit-not than to do (<= 0 x 127)
 
-(defn varint->long [varint]
-  (reduce (fn [n shift] (bit-or n (bit-shift-left (bit-and 0x7F (varint shift)) (* shift 7))))
+(defn varint->long [vari]
+  (reduce (fn [n shift] (bit-or n (bit-shift-left (bit-and 0x7F (vari shift)) (* shift 7))))
           0
-          (range (count varint))))
+          (range (count vari))))
 
 
 ;; String encoding and decoding are not so efficient, but useful for testing.
